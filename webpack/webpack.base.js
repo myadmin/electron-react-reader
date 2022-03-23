@@ -17,8 +17,6 @@ module.exports = {
                     loader: 'babel-loader',
                 }
             },
-        ],
-        rules: [
             {
                 test: /\.(jpg|png|jpeg|gif)$/,
                 use: [
@@ -31,7 +29,7 @@ module.exports = {
                     },
                 ],
             },
-        ],
+        ]
     },
     plugins: [new CleanWebpackPlugin()],
 };

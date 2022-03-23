@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Title from './title';
+import Home from './components/Home';
+import BookDetail from './components/BookDetail';
+import './styles.less';
 
 const App = () => {
     return (
         <Router>
             <Switch>
-                <Route path="/">
-                    <Title text='可视化简历平台' />
-                </Route>
+                <Route path="/" component={Home} />
+                <Route path="/bookDetail" component={BookDetail} />
             </Switch>
         </Router>
     )
