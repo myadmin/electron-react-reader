@@ -1,18 +1,16 @@
 import React from 'react';
-import fileAction from '@common/utils/file';
-import { getAppPath } from '@common/utils/appPath';
+import MyScrollBox from '@components/MyScrollBox';
 
 const Resume = () => {
-  getAppPath().then((rootPath: string) => {
-    console.log(`应用程序的目录为：${rootPath}`);
-    console.log('文件读取，内容数据为：', __dirname);
-    fileAction.read(`${rootPath}app/renderer/container/resume/index.tsx`).then((data) => {
-      console.log(data);
-    });
-  });
+  const HEADER_HEIGHT = 60;
+  const height = document.body.clientHeight;
 
   return (
-    <div>Resume</div>
+    <div styleName='container'>
+      <MyScrollBox maxHeight={height - HEADER_HEIGHT}>
+        <Template.TemplateOne />
+      </MyScrollBox>
+    </div>
   )
 }
 

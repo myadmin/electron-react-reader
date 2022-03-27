@@ -7,7 +7,7 @@ import './index.less';
 
 const { Meta } = Card;
 
-const Home = () => {
+const BookList = () => {
   const history = useHistory();
   const location = useLocation();
   const [bookData, setBookData] = useState<Record<string, any>>([]);
@@ -108,4 +108,4 @@ const Home = () => {
   )
 }
 
-export default Home;
+export default BookList;

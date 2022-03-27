@@ -52,9 +52,7 @@ const Root = () => {
         </div>
         <div styleName='copyright'>
           <div styleName='footer'>
-            <p styleName='copyright'>
-              Copyright © 2018-{new Date().getFullYear()} All Rights Reserved. Copyright By pengdaokuan
-            </p>
+            <p styleName='copyright'>Copyright © 2018-{new Date().getFullYear()} All Rights Reserved. Copyright By myAdmin</p>
           </div>
         </div>
       </div>

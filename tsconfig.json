@@ -18,6 +18,7 @@
       "@assets/*": ["./assets/*"],
       "@src/*": ["./app/renderer/*"], // webpack 配置别名，但在TS中会报红找不到，所以tslint也需要配置
       "@common/*": ["./app/renderer/common/*"],
+      "@components/*": ["./app/renderer/components/*"],
     },
     "moduleResolution": "node"
   },
