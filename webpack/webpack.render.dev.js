@@ -25,7 +25,7 @@ const devConfig = {
     plugins: [
         new HtmlWebpackPlugin({
             // 👇 以此文件为模版，自动生成 HTML
-            template: path.resolve(__dirname, '../app/renderer/index.html'),
+            template: path.resolve(__dirname, '../public/index.html'),
             filename: path.resolve(__dirname, '../dist/index.html'),
             chunks: ['index'],
         }),
