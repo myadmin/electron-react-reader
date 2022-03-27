@@ -13,7 +13,8 @@ const Root = () => {
   const appName = useSelector((state: any) => state.globalModel.appName);
 
   const onRouterToLink = (router: TSRouter.Item) => {
-    if (isHttpOrHttpsUrl(router.text)) {
+    console.log('router', router.text);
+    if (isHttpOrHttpsUrl(router.url)) {
       shell.openExternal(router.url);
     } else {
       history.push(router.url);
@@ -41,7 +42,7 @@ const Root = () => {
     <div styleName='root'>
       <div styleName='container'>
         <img src={Logo} alt='logo' />
-        <div styleName='title'>VisResumeMook</div>
+        <div styleName='title'>MakeResumeMook</div>
         <div styleName='tips'>一个模板简历制作平台, 让你的简历更加出众 ~</div>
         <div styleName='action'>
           {ROUTER_ENTRY.map((router: TSRouter.Item) => {

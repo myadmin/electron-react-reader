@@ -18,9 +18,7 @@ const TemplateOne = () => {
       <div styleName="flex container" id="visPdf">
         {/* 左侧 */}
         <div styleName="left">
-          <div styleName="avatar">
-            <Avatar />
-          </div>
+          <div styleName="avatar"><Avatar /></div>
           <div styleName="fillColor" />
           <div styleName="baseData">
             <BaseInfo />

@@ -79,7 +79,7 @@ const userResume = {
     {
       beginTime: '2021.03',
       endTime: '2021.05',
-      projectName: 'visResumeMook 可视化简历平台',
+      projectName: 'MakeResumeMook 可视化简历平台',
       post: '前端工程师',
       content:
         'Electron + React Hooks 打造简历平台，只需输入一次信息，套用多份模版｜通过 jsonfile 方式实现主题换肤，支持导出 PDF 简历文档｜通过 indexDB 方式实现历史简历缓存，通过可视化拖拽形式，自定义组件模版',

@@ -15,7 +15,7 @@ const Project = () => {
           </div>
           <div styleName="right">
             <p>
-              <span>visResumeMook 可视化简历平台 -前端工程师</span>
+              <span>MakeResumeMook 可视化简历平台 -前端工程师</span>
             </p>
           </div>
           <div styleName="text">
