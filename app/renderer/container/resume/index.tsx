@@ -1,15 +1,15 @@
 import React from 'react';
-import MyScrollBox from '@components/MyScrollBox';
+import ResumeAction from './ResumeAction';
+import ResumeContent from './ResumeContent';
+import ResumeToolbar from './ResumeToolbar';
+import './index.less';
 
 const Resume = () => {
-  const HEADER_HEIGHT = 60;
-  const height = document.body.clientHeight;
-
   return (
     <div styleName='container'>
-      <MyScrollBox maxHeight={height - HEADER_HEIGHT}>
-        <Template.TemplateOne />
-      </MyScrollBox>
+      <div styleName='header'><ResumeAction /></div>
+      <div styleName='content'><ResumeContent /></div>
+      <div styleName='toolbar'><ResumeToolbar /></div>
     </div>
   )
 }
