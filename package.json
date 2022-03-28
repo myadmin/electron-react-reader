@@ -142,6 +142,13 @@
       "allowToChangeInstallationDirectory": true,
       "oneClick": false,
       "perMachine": false
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "myadmin",
+        "repo": "electron-react-reader"
+      }
+    ]
   }
 }
