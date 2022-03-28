@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RESUME_TOOLBAR_MAPS } from '@common/constants/resume';
 import Avatar from './components/Avatar';
 import BaseInfo from './components/BaseInfo';
 import Contact from './components/Contact';
@@ -12,34 +14,39 @@ import Work from './components/Work';
 import './index.less';
 
 const TemplateOne = () => {
-  // 必须带有id，以方便导出时获取DOM元素内容
-  return (
-    <div styleName="a4-box">
-      <div styleName="flex container" id="visPdf">
-        {/* 左侧 */}
-        <div styleName="left">
-          <div styleName="avatar"><Avatar /></div>
-          <div styleName="fillColor" />
-          <div styleName="baseData">
-            <BaseInfo />
-            <Contact />
-            <Job />
-            <Certificate />
-          </div>
+    // 获取简历信息数据
+    const base: TSResume.Base = useSelector((state: Record<string, any>) => state.resumeModel.base);
+    // 获取工具条模块keys
+    const resumeToolbarKeys: string[] = useSelector((state: Record<string, any>) => state.templateModel.resumeToolbarKeys);
+
+    // 必须带有id，以方便导出时获取DOM元素内容
+    return (
+        <div styleName="a4-box">
+            <div styleName="flex container" id="visPdf">
+                {/* 左侧 */}
+                <div styleName="left">
+                    <div styleName="avatar"><Avatar /></div>
+                    <div styleName="fillColor" />
+                    <div styleName="baseData">
+                        <BaseInfo />
+                        {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.contact) && <Contact />}
+                        {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.workPrefer) && <Job />}
+                        {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.certificate) && <Certificate />}
+                    </div>
+                </div>
+                {/* 内容 */}
+                <div styleName="center">
+                    {(resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.evaluation) || base?.username) && <Synopsis />}
+                    <div styleName="listData">
+                        {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.skill) && <Skill />}
+                        {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.schoolExperience) && <Post />}
+                        {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.projectExperience) && <Project />}
+                        {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.workExperience) && <Work />}
+                    </div>
+                </div>
+            </div>
         </div>
-        {/* 内容 */}
-        <div styleName="center">
-          <Synopsis />
-          <div styleName="listData">
-            <Skill />
-            <Post />
-            <Project />
-            <Work />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default TemplateOne;
