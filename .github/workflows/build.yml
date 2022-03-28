@@ -32,8 +32,13 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build src code
-        run: npm run build
+      - name: Build Render
+        run: npm run build:render
+        env:
+          GITHUB_TOKEN: ${{ secrets.access_token }}
+
+      - name: Build Main
+        run: npm run build:main
         env:
           GITHUB_TOKEN: ${{ secrets.access_token }}
 

@@ -2,11 +2,29 @@
   "name": "electron-react-reader",
   "version": "1.0.0",
   "description": "",
-  "main": "./app/main/electron.ts",
+  "main": "./dist/electron.js",
   "scripts": {
     "start:main": "webpack --config ./webpack/webpack.main.dev.js && electron ./dist/electron.js",
     "start:render": "webpack-dev-server --config ./webpack/webpack.render.dev.js",
-    "start": "npm run start:render & npm run start:main"
+    "start": "npm run start:render & npm run start:main",
+    "build:main": "webpack --config ./webpack/webpack.main.prod.js",
+    "build:render": "webpack --config ./webpack/webpack.render.prod.js",
+    "build": "npm run build:render & npm run build:main",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "publish": "node publish",
+    "publish:win:setup:x64:always": "cross-env TARGET=Setup ARCH=x64 electron-builder -w=nsis --x64 -p always",
+    "publish:win:setup:x64": "cross-env TARGET=Setup ARCH=x64 electron-builder -w=nsis --x64 -p always",
+    "publish:win:setup:x86": "cross-env TARGET=Setup ARCH=x86 electron-builder -w=nsis --ia32 -p onTagOrDraft",
+    "publish:win:setup:arm64": "cross-env TARGET=Setup ARCH=arm64 electron-builder -w=nsis --arm64 -p onTagOrDraft",
+    "publish:win:setup:x86_64": "cross-env TARGET=Setup ARCH=x86_64 electron-builder -w=nsis --x64 --ia32 -p onTagOrDraft",
+    "publish:win:portable": "npm run publish:win:portable:x86_64 && npm run publish:win:portable:x64 && npm run publish:win:portable:x86",
+    "publish:win:portable:x86_64": "cross-env TARGET=portable ARCH=x86_64 electron-builder -w=portable --x64 --ia32 -p onTagOrDraft",
+    "publish:win:portable:x64": "cross-env TARGET=portable ARCH=x64 electron-builder -w=portable --x64 -p onTagOrDraft",
+    "publish:win:portable:x86": "cross-env TARGET=portable ARCH=x86 electron-builder -w=portable --ia32 -p onTagOrDraft",
+    "publish:win:7z:x64": "cross-env TARGET=green ARCH=win_x64 electron-builder -w=7z --x64 -p onTagOrDraft",
+    "publish:win:7z:x86": "cross-env TARGET=green ARCH=win_x86 electron-builder -w=7z --ia32 -p onTagOrDraft",
+    "publish:win:7z:arm64": "cross-env TARGET=green ARCH=win_arm64 electron-builder -w=7z --arm64 -p onTagOrDraft"
   },
   "keywords": [],
   "author": "myadmin",
@@ -15,7 +33,6 @@
     "@rematch/core": "^2.2.0",
     "antd": "^4.19.3",
     "classnames": "^2.3.1",
-    "electron": "11.1.1",
     "epub": "^1.2.1",
     "rc-redux-model": "^1.1.10",
     "react": "^17.0.2",
@@ -49,12 +66,14 @@
     "concurrently": "^7.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "3.0.0",
+    "electron-builder": "^22.14.13",
     "eslint": "^7.26.0",
     "eslint-config-alloy": "^4.1.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "electron": "11.1.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "4.3.0",
     "less": "3.12.2",
@@ -75,15 +94,13 @@
     "productName": "Electron React Reader",
     "copyright": "Copyright @ 2022 ${author}",
     "files": [
-      "build/**/*",
-      "node_modules/**/*",
+      "dist/**/*",
+      "node_modules/",
       "package.json"
     ],
     "directories": {
-      "buildResources": "assets"
-    },
-    "extraMetadata": {
-      "main": "./build/main.js"
+      "buildResources": "assets",
+      "output": "build"
     },
     "extends": null,
     "mac": {

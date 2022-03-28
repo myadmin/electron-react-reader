@@ -3,8 +3,9 @@ const webpackMerge = require('webpack-merge');
 const baseConfig = require('./webpack.base.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const devConfig = {
-    mode: 'development',
+const prodConfig = {
+    // 👇 这里改成生产环境
+    mode: 'production',
     entry: {
         index: path.resolve(__dirname, '../app/renderer/index.tsx'),
     },
@@ -21,15 +22,6 @@ const devConfig = {
         port: 7001, // 启动端口为 7001 的服务
         hot: true,
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            // 👇 以此文件为模版，自动生成 HTML
-            template: path.resolve(__dirname, '../public/index.html'),
-            filename: path.resolve(__dirname, '../dist/index.html'),
-            chunks: ['index'],
-        }),
-    ],
-    // 👇 追加这段代码，关于Loader与Plugin了解可以去看彩蛋篇
     module: {
         rules: [
             {
@@ -54,7 +46,14 @@ const devConfig = {
                 ],
             },
         ],
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, '../public/index.html'),
+            filename: path.resolve(__dirname, '../dist/index.html'),
+            chunks: ['index'],
+        }),
+    ],
 };
 
-module.exports = webpackMerge.merge(baseConfig, devConfig);
+module.exports = webpackMerge.merge(baseConfig, prodConfig);
