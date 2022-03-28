@@ -35,12 +35,12 @@ jobs:
       - name: Build Render
         run: npm run build:render
         env:
-          GITHUB_TOKEN: ${{ secrets.access_token }}
+          GITHUB_TOKEN: ${{ secrets.access_token2 }}
 
       - name: Build Main
         run: npm run build:main
         env:
-          GITHUB_TOKEN: ${{ secrets.access_token }}
+          GITHUB_TOKEN: ${{ secrets.access_token2 }}
 
       - name: Release package
         run: |
@@ -52,4 +52,4 @@ jobs:
           npm run publish:win:7z:x86
           npm run publish:win:7z:arm64
         env:
-          GITHUB_TOKEN: ${{ secrets.access_token }}
+          GITHUB_TOKEN: ${{ secrets.access_token2 }}
