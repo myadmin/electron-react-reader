@@ -4,11 +4,11 @@
   "description": "",
   "main": "./dist/electron.js",
   "scripts": {
-    "start:main": "webpack --config ./webpack/webpack.main.dev.js && electron ./dist/electron.js",
-    "start:render": "webpack-dev-server --config ./webpack/webpack.render.dev.js",
+    "start:main": "webpack --config ./webpack/webpack.main.dev.base.js && electron ./dist/electron.js",
+    "start:render": "webpack-dev-server --config ./webpack/webpack.render.dev.base.js",
     "start": "npm run start:render & npm run start:main",
-    "build:main": "webpack --config ./webpack/webpack.main.prod.js",
-    "build:render": "webpack --config ./webpack/webpack.render.prod.js",
+    "build:main": "webpack --config ./webpack/webpack.main.prod.base.js",
+    "build:render": "webpack --config ./webpack/webpack.render.prod.base.js",
     "build": "npm run build:render & npm run build:main",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
@@ -66,6 +66,7 @@
     "concurrently": "^7.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "3.0.0",
+    "electron": "11.1.1",
     "electron-builder": "^22.14.13",
     "eslint": "^7.26.0",
     "eslint-config-alloy": "^4.1.0",
@@ -73,7 +74,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "electron": "11.1.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "4.3.0",
     "less": "3.12.2",
@@ -83,6 +83,7 @@
     "prettier": "^2.3.0",
     "style-loader": "2.0.0",
     "typescript": "^4.6.2",
+    "url-loader": "^4.1.1",
     "wait-on": "^6.0.1",
     "webpack": "4.44.1",
     "webpack-cli": "3.3.12",
@@ -104,6 +105,10 @@
     },
     "extends": null,
     "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
       "category": "Application Category",
       "artifactName": "${productName}-${version}-${arch}.${ext}"
     },

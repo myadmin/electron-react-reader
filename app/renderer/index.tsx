@@ -5,9 +5,9 @@ import Router from './router';
 import store from './store';
 
 const App = () => (
-  <Provider store={store}>
-    <Router />
-  </Provider>
+    <Provider store={store}>
+        <Router />
+    </Provider>
 );
 
 ReactDOM.render(<App />, document.getElementById('app'));
